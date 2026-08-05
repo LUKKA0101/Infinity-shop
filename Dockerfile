@@ -1,6 +1,7 @@
-FROM node:24
+FROM node:24-alpine
 WORKDIR /app
-COPY package.json .
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
-CMD [ "npm", "start" ]
+RUN npm run build
+CMD [ "npm", "run", "start:prod" ]
