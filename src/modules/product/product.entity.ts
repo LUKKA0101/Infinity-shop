@@ -48,7 +48,7 @@ export class Product {
   @DeleteDateColumn({ name: "deleted_at" })
   deletedAt!: Date | null;
 
-  @ManyToMany(() => Category)
+  @ManyToMany(() => Category, (category) => category.products)
   @JoinTable({ name: "product_category" })
   categories!: Category[];
 }
