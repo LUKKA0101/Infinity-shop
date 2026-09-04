@@ -4,6 +4,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from "typeorm";
+
 import { DiscountType } from "../../shared/enums/discount-type.enum";
 
 @Entity({ name: "coupon" })

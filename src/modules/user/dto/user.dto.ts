@@ -1,17 +1,18 @@
+import { Exclude, Expose, Type } from "class-transformer";
 import {
   IsDate,
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Length,
   Matches,
   MaxLength,
   MinLength,
-  IsOptional,
 } from "class-validator";
-import { MinAge } from "../user.min-age.validator";
-import { Type } from "class-transformer";
+
 import { Role } from "../../../shared/enums/role.enum";
+import { MinAge } from "../user.min-age.validator";
 
 export class CreateUserDto {
   @IsString()
@@ -77,13 +78,22 @@ export class UpdateUserDto {
 }
 
 export class UserResponseDto {
+  @Expose()
   id!: string;
+  @Expose()
   name!: string;
+  @Expose()
   lastName!: string;
+  @Expose()
   email!: string;
+  @Exclude()
+  password!: string;
+  @Expose()
   dateOfBirth!: Date;
+  @Expose()
   role!: Role;
   isActive!: boolean;
+  @Expose()
   createdAt!: Date;
   updatedAt!: Date;
 }

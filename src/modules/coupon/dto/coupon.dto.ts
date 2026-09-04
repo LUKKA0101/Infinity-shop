@@ -1,20 +1,21 @@
+import { PartialType } from "@nestjs/mapped-types";
+import { Type } from "class-transformer";
 import {
-  IsString,
-  IsNotEmpty,
-  Length,
-  IsEnum,
-  IsNumber,
-  IsOptional,
-  Min,
-  Max,
-  IsInt,
   IsBoolean,
   IsDate,
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Length,
+  Max,
+  Min,
   ValidateIf,
 } from "class-validator";
-import { Type } from "class-transformer";
+
 import { DiscountType } from "../../../shared/enums/discount-type.enum";
-import { PartialType } from "@nestjs/mapped-types";
 
 export class CreateCouponDto {
   @IsString()

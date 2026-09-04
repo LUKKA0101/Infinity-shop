@@ -1,7 +1,7 @@
 import {
   registerDecorator,
-  ValidationOptions,
   ValidationArguments,
+  ValidationOptions,
 } from "class-validator";
 
 export function MinAge(minAge: number, validationOptions?: ValidationOptions) {

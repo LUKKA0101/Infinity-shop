@@ -9,11 +9,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { User } from "../user/user.entity";
+
+import { OrderStatus } from "../../shared/enums/order-status.enum";
 import { Address } from "../address/address.entity";
 import { OrderItem } from "../order-item/order-item.entity";
 import { Payment } from "../payment/payment.entity";
-import { OrderStatus } from "../../shared/enums/order-status.enum";
+import { User } from "../user/user.entity";
 
 @Entity({ name: "order" })
 export class Order {

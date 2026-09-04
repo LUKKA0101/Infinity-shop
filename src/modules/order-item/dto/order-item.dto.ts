@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsUUID, IsInt, Min } from "class-validator";
 import { Type } from "class-transformer";
+import { IsInt, IsNotEmpty, IsUUID, Min } from "class-validator";
 
 export class CreateOrderItemDto {
   @IsUUID()

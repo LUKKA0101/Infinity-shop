@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsUUID, IsEnum } from "class-validator";
+import { IsEnum, IsNotEmpty, IsUUID } from "class-validator";
+
 import { PaymentMethod } from "../../../shared/enums/payment-method.enum";
 import { PaymentStatus } from "../../../shared/enums/payment-status.enum";
 
