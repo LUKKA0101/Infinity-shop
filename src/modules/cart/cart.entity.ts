@@ -1,14 +1,15 @@
 import {
-  JoinColumn,
-  Entity,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
+  JoinColumn,
   OneToMany,
   OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
-import { User } from "../user/user.entity";
+
 import { CartItem } from "../cart-item/cart-item.entity";
+import { User } from "../user/user.entity";
 
 @Entity({ name: "cart" })
 export class Cart {

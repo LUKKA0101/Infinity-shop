@@ -1,18 +1,19 @@
+import { Type } from "class-transformer";
 import {
-  IsNotEmpty,
-  IsUUID,
+  ArrayMinSize,
+  IsArray,
   IsEnum,
+  IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsArray,
-  ValidateNested,
-  ArrayMinSize,
+  IsUUID,
   Min,
+  ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
+
 import { OrderStatus } from "../../../shared/enums/order-status.enum";
-import { CreateOrderItemDto } from "../../order-item/dto/order-item.dto";
 import { AddressResponseDto } from "../../address/dto/address.dto";
+import { CreateOrderItemDto } from "../../order-item/dto/order-item.dto";
 
 export class CreateOrderDto {
   @IsUUID()

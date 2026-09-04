@@ -1,13 +1,14 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
-  OneToOne,
+  Entity,
   OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
+
 import { Role } from "../../shared/enums/role.enum";
 import { Address } from "../address/address.entity";
 import { Cart } from "../cart/cart.entity";

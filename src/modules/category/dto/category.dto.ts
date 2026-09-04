@@ -1,6 +1,5 @@
 import { PartialType } from "@nestjs/mapped-types";
-
-import { IsString, IsNotEmpty, Length, IsOptional } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, Length } from "class-validator";
 
 export class CreateCategoryDto {
   @IsString()

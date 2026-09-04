@@ -1,13 +1,13 @@
+import { OmitType, PartialType } from "@nestjs/mapped-types";
 import {
-  IsString,
-  IsNotEmpty,
-  Length,
-  IsOptional,
   IsBoolean,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Length,
   Matches,
   ValidateIf,
 } from "class-validator";
-import { PartialType, OmitType } from "@nestjs/mapped-types";
 
 export class CreateAddressDto {
   @IsString()

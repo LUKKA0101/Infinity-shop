@@ -1,18 +1,18 @@
-import {
-  IsString,
-  IsNotEmpty,
-  Length,
-  IsNumber,
-  Min,
-  IsOptional,
-  IsBoolean,
-  IsArray,
-  IsUUID,
-  IsInt,
-  IsUrl,
-} from "class-validator";
-import { Type } from "class-transformer";
 import { PartialType } from "@nestjs/mapped-types";
+import { Type } from "class-transformer";
+import {
+  IsArray,
+  IsBoolean,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUrl,
+  IsUUID,
+  Length,
+  Min,
+} from "class-validator";
 
 export class CreateProductDto {
   @IsString()
