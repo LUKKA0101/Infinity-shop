@@ -8,11 +8,6 @@ export class CreateCategoryDto {
   name!: string;
 
   @IsString()
-  @IsNotEmpty()
-  @Length(1, 40)
-  slug!: string;
-
-  @IsString()
   @IsOptional()
   @Length(0, 500)
   description?: string;

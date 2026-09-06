@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { PostgresConfig } from "./config/postgres.config";
 import { AuthModule } from "./modules/auth/auth.module";
+import { CategoryModule } from "./modules/category/category.module";
 import { UserModule } from "./modules/user/user.module";
 
 @Module({
@@ -17,6 +18,7 @@ import { UserModule } from "./modules/user/user.module";
     }),
     AuthModule,
     UserModule,
+    CategoryModule,
   ],
 })
 export class AppModule {}
