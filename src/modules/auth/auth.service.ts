@@ -7,6 +7,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
 import { generateToken } from "../../utils/jwt";
+import { Cart } from "../cart/cart.entity";
 import { CreateUserDto } from "../user/dto/user.dto";
 import { User } from "../user/user.entity";
 import { PasswordService } from "./password.service";
@@ -16,6 +17,8 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Cart)
+    private readonly cartRepository: Repository<Cart>,
     private readonly passwordService: PasswordService,
   ) {}
 
@@ -30,16 +33,19 @@ export class AuthService {
       throw new ConflictException("User already exists");
     }
 
-    if (await this.emailExists(userDto.email)) {
-      throw new ConflictException("Email already in use");
-    }
-
     const passwordHash = await this.passwordService.hash(userDto.password);
 
-    return this.userRepository.save({
+    const user = this.userRepository.create({
       ...userDto,
       password: passwordHash,
     });
+
+    const savedUser = await this.userRepository.save(user);
+
+    const cart = this.cartRepository.create({ user: savedUser });
+    await this.cartRepository.save(cart);
+
+    return savedUser;
   }
 
   async signIn(email: string): Promise<{ message: string; token: string }> {
