@@ -28,7 +28,9 @@ export class CategoryService {
   }
 
   async findBySlug({ slug }: { slug: string }) {
-    const category = await this.categoryRepository.findOneBy({ slug });
+    const category = await this.categoryRepository.findOne(
+      slug ? { where: { slug }, relations: { products: true } } : {},
+    );
     if (!category) {
       throw new Error(`Category with slug ${slug} not found`);
     }

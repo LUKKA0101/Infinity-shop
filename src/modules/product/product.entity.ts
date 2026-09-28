@@ -3,8 +3,8 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -22,12 +22,13 @@ export class Product {
   @Column({ name: "description", type: "text", nullable: false })
   description!: string;
 
-  @Column({
-    name: "price",
-    type: "decimal",
+  @Column("decimal", {
     precision: 10,
     scale: 2,
-    nullable: false,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
   })
   price!: number;
 
@@ -49,7 +50,9 @@ export class Product {
   @DeleteDateColumn({ name: "deleted_at" })
   deletedAt!: Date | null;
 
-  @ManyToMany(() => Category, (category) => category.products)
-  @JoinTable({ name: "product_category" })
-  categories!: Category[];
+  @ManyToOne(() => Category, (category) => category.products, {
+    nullable: true,
+  })
+  @JoinColumn({ name: "category_id" })
+  category!: Category;
 }
