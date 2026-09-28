@@ -26,17 +26,18 @@ export class CartItem {
     onDelete: "RESTRICT",
   })
   @JoinColumn({ name: "product_id" })
-  productId!: Product;
+  product!: Product;
 
   @Column({ name: "quantity", type: "int", nullable: false, default: 1 })
   quantity!: number;
 
-  @Column({
-    name: "unit_price",
-    type: "decimal",
+  @Column("decimal", {
     precision: 10,
     scale: 2,
-    nullable: false,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
   })
   unitPrice!: number;
 }
