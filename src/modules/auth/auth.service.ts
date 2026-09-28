@@ -48,10 +48,29 @@ export class AuthService {
     return savedUser;
   }
 
-  async signIn(email: string): Promise<{ message: string; token: string }> {
-    const user = await this.userRepository.findOne({ where: { email } });
+  async signIn(
+    email: string,
+    password: string,
+  ): Promise<{ message: string; token: string }> {
+    const user = await this.userRepository.findOne({
+      where: { email },
+      select: {
+        id: true,
+        password: true,
+        role: true,
+      },
+    });
 
     if (!user) {
+      throw new UnauthorizedException("Invalid email or password");
+    }
+
+    const isPasswordValid = await this.passwordService.compare(
+      password,
+      user.password,
+    );
+
+    if (!isPasswordValid) {
       throw new UnauthorizedException("Invalid email or password");
     }
 

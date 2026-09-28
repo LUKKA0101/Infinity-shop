@@ -28,8 +28,8 @@ export class AuthGuard implements CanActivate {
       ) as AuthPayload;
 
       request.user = {
-        userId: decoded.userId,
-        authType: decoded.authType,
+        id: decoded.userId,
+        role: decoded.role,
       };
 
       return true;

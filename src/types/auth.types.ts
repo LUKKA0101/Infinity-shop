@@ -6,5 +6,5 @@ export const enum AuthType {
 
 export interface AuthPayload {
   userId: string;
-  authType: AuthType;
+  role: string;
 }
