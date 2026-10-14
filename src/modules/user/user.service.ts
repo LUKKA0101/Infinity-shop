@@ -11,17 +11,17 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  create(createUser: CreateUserDto) {
+  async create(createUser: CreateUserDto) {
     const user = this.userRepository.create(createUser);
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 
-  findAll() {
-    return this.userRepository.find();
+  async findAll() {
+    return await this.userRepository.find();
   }
 
-  findOne(id: string) {
-    return this.userRepository.findOneBy({ id });
+  async findOne(id: string) {
+    return await this.userRepository.findOneBy({ id });
   }
 
   async update(id: string, userDto: CreateUserDto) {
@@ -30,7 +30,7 @@ export class UserService {
       throw new NotFoundException(`User ${id} not found`);
     }
     this.userRepository.merge(user, userDto);
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 
   async delete(id: string) {
@@ -38,6 +38,6 @@ export class UserService {
     if (!user) {
       throw new NotFoundException(`User ${id} not found`);
     }
-    return this.userRepository.remove(user);
+    return await this.userRepository.remove(user);
   }
 }

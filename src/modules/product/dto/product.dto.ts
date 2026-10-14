@@ -1,7 +1,6 @@
 import { PartialType } from "@nestjs/mapped-types";
-import { Type } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 import {
-  IsArray,
   IsBoolean,
   IsInt,
   IsNotEmpty,
@@ -44,23 +43,31 @@ export class CreateProductDto {
   @IsOptional()
   active?: boolean = true;
 
-  @IsArray()
-  @IsUUID("4", { each: true })
+  @IsUUID("4")
   @IsOptional()
-  categoryIds?: string[];
+  categoryId?: string;
 }
 
 export class UpdateProductDto extends PartialType(CreateProductDto) {}
 
 export class ProductResponseDto {
+  @Expose()
   id!: string;
+  @Expose()
   name!: string;
+  @Expose()
   description!: string;
+  @Expose()
   price!: number;
+  @Expose()
   stock!: number;
+  @Expose()
   imageUrl?: string;
+  @Expose()
   active!: boolean;
-  categories?: { id: string; name: string; slug: string }[];
+  @Expose()
+  category?: { id: string; name: string; slug: string };
+  @Expose()
   createdAt!: Date;
   updatedAt!: Date;
 }

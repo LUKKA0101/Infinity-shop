@@ -1,9 +1,28 @@
-import { AuthPlayload } from "../types/auth";
+import { Request } from "express";
 
 declare global {
   namespace Express {
     interface Request {
-      user?: AuthPlayload;
+      user?: {
+        id: string;
+        role: string;
+      };
     }
   }
+}
+
+export interface AuthenticatedRequest extends Request {
+  user: {
+    id: string;
+    role: string;
+  };
+
+  address: {
+    id: string;
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
 }

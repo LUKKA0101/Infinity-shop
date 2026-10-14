@@ -28,7 +28,7 @@ export class Order {
   @JoinColumn({ name: "user_id" })
   user!: User;
 
-  @ManyToOne(() => Address, (address) => address.id, {
+  @ManyToOne(() => Address, (address) => address.orders, {
     nullable: false,
     onDelete: "RESTRICT",
   })
