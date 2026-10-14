@@ -1,61 +1,54 @@
 # Infinity Shop
 
-> ⚠️ **Projeto em desenvolvimento.** Construído para portfólio e estudo, não é destinado a produção. Estrutura, funcionalidades e endpoints ainda estão sendo implementados.
+API REST de e-commerce em desenvolvimento, construída com NestJS, TypeScript e PostgreSQL. O projeto explora arquitetura modular, validação de entrada, autenticação e modelagem de domínio.
 
-API REST de e-commerce construída com NestJS, com foco em boas práticas de validação, arquitetura modular e segurança (regras de negócio sensíveis — como preço e permissões — protegidas no backend, nunca confiando em dados vindos do cliente).
+> **Status:** projeto de portfólio em desenvolvimento. Nem todos os fluxos de e-commerce estão implementados; não use em produção.
 
-## Stack
+## Tecnologias
 
-- **NestJS** + TypeScript
-- **TypeORM** (PostgreSQL)
-- **class-validator** / **class-transformer** para validação de DTOs
-- **Docker** + Docker Compose
-- **Jest** para testes
-- ESLint + Prettier
-## Status do projeto
+- NestJS e TypeScript
+- PostgreSQL e TypeORM
+- DTOs com `class-validator` e `class-transformer`
+- Autenticação com JWT
+- Hash de senha com bcrypt
+- Docker Compose
+- Jest
 
-Em desenvolvimento inicial. Até o momento:
+## Funcionalidades implementadas
 
-- [x] Modelagem das entities (User, Address, Product, Category, Cart, CartItem, Order, OrderItem, Payment, Coupon)
-- [x] DTOs de validação (Create/Update/Response) para os módulos principais
-- [ ] Configuração do `ValidationPipe` global
-- [ ] Conexão do TypeORM à aplicação
-- [ ] Implementação dos services e regras de negócio
-- [ ] Implementação dos controllers e endpoints
-- [ ] Autenticação (JWT)
-- [ ] Carrinho de compras
-- [ ] Criação de pedidos e cálculo de total
-- [ ] Pagamento simulado (Pix / crédito / débito)
-- [ ] Cupons de desconto
-- [ ] Cálculo de frete
-- [ ] Notificação por e-mail
-- [ ] Testes automatizados
-## Rodando o projeto
+- Cadastro e login de usuários
+- Validação global dos dados recebidos
+- CRUD de produtos e categorias
+- Cadastro e gerenciamento de endereços do usuário
+- Carrinho associado ao usuário autenticado
+- Armazenamento do preço do produto no item do carrinho
 
-### Com Docker
+## Em desenvolvimento
 
-```bash
-docker-compose up
-```
+- Autorização por perfil e propriedade dos recursos
+- Criação de pedidos a partir do carrinho
+- Atualização de estoque e cálculo do total do pedido
+- Fluxo de pagamento simulado
+- Aplicação de cupons e cálculo de frete
+- Testes unitários e de integração
+- Migrations para versionamento do banco de dados
 
-### Localmente
+## Requisitos
 
-```bash
-npm install
-npm run start:dev
-```
+- Node.js e npm
+- Docker e Docker Compose, ou uma instância local de PostgreSQL
 
-### Testes
+## Configuração
 
-```bash
-npm run test
-npm run test:e2e
-```
+Crie um arquivo `.env` na raiz do projeto:
 
-## Estrutura
+```env
+PORT=3000
 
-Organizado por módulos (`src/modules`), cada um com sua entity e DTOs (Create/Update/Response): `user`, `address`, `product`, `category`, `cart`, `cart-item`, `order`, `order-item`, `payment`, `coupon`.
+DB_HOST=localhost
+DB_PORT=5433
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_DATABASE=infinity_shop
 
-## Autor
-
-Lucas — [GitHub](https://github.com/LUKKA0101)
+JWT_SECRET=troque-por-um-segredo-longo-e-aleatorio
