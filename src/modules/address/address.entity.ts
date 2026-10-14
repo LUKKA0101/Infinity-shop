@@ -4,10 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 
+import { Order } from "../order/order.entity";
 import { User } from "../user/user.entity";
 
 @Entity({ name: "address" })
@@ -45,6 +47,9 @@ export class Address {
 
   @Column({ name: "is_default", default: false })
   isDefault!: boolean;
+
+  @OneToMany(() => Order, (order) => order.address)
+  orders!: Order[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt!: Date;
