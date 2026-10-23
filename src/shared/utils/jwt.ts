@@ -15,3 +15,25 @@ export function generateToken(userId: string, role: string) {
     expiresIn: "2h",
   });
 }
+
+export function generateEmailConfirmationToken(userId: string) {
+  return jwt.sign({ userId, purpose: "email-confirmation" }, JWT_SECRET, {
+    expiresIn: "24h",
+  });
+}
+
+export function verifyEmailConfirmationToken(token: string): {
+  userId: string;
+} {
+  const payload = jwt.verify(token, JWT_SECRET);
+
+  if (
+    typeof payload === "string" ||
+    payload.purpose !== "email-confirmation" ||
+    typeof payload.userId !== "string"
+  ) {
+    throw new Error("Invalid email confirmation token");
+  }
+
+  return { userId: payload.userId };
+}

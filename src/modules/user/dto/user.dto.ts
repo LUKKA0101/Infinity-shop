@@ -1,9 +1,9 @@
+import { OmitType, PartialType } from "@nestjs/mapped-types";
 import { Exclude, Expose, Type } from "class-transformer";
 import {
   IsDate,
   IsEmail,
   IsNotEmpty,
-  IsOptional,
   IsString,
   Length,
   Matches,
@@ -12,7 +12,7 @@ import {
 } from "class-validator";
 
 import { Role } from "../../../shared/enums/role.enum";
-import { MinAge } from "../user.min-age.validator";
+import { MinAge } from "../validador/user.min-age.validator";
 
 export class CreateUserDto {
   @IsString()
@@ -45,37 +45,9 @@ export class CreateUserDto {
   dateOfBirth!: Date;
 }
 
-export class UpdateUserDto {
-  @IsString()
-  @IsOptional()
-  @Length(1, 70)
-  name?: string;
-
-  @IsString()
-  @IsOptional()
-  @Length(1, 70)
-  lastName?: string;
-
-  @IsEmail()
-  @IsOptional()
-  email?: string;
-
-  @IsString()
-  @MinLength(8)
-  @MaxLength(64)
-  @IsOptional()
-  @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).*$/, {
-    message:
-      "A senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caractere especial",
-  })
-  password?: string;
-
-  @Type(() => Date)
-  @IsDate()
-  @IsOptional()
-  @MinAge(16)
-  dateOfBirth?: Date;
-}
+export class updateUserDto extends PartialType(
+  OmitType(CreateUserDto, ["password", "email"] as const),
+) {}
 
 export class UserResponseDto {
   @Expose()
@@ -92,8 +64,10 @@ export class UserResponseDto {
   dateOfBirth!: Date;
   @Expose()
   role!: Role;
+  @Expose()
   isActive!: boolean;
   @Expose()
   createdAt!: Date;
+  @Expose()
   updatedAt!: Date;
 }

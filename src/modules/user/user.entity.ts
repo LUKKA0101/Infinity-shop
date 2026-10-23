@@ -53,9 +53,18 @@ export class User {
   @CreateDateColumn({ name: "created_at" })
   createdAt!: Date;
 
-  @UpdateDateColumn({ name: "updated_at" })
+  @UpdateDateColumn({ name: "updated_at", nullable: true })
   updatedAt!: Date;
 
-  @DeleteDateColumn({ name: "deleted_at" })
+  @DeleteDateColumn({ name: "deleted_at", nullable: true })
   deletedAt!: Date | null;
+
+  @Column({ name: "is_active", default: true })
+  isActive!: boolean;
+
+  @Column({ name: "email_verified", default: false })
+  emailVerified!: boolean;
+
+  @Column({ name: "scheduled_hard_delete_at", nullable: true })
+  scheduledHardDeleteAt!: Date | null;
 }

@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { ScheduleModule } from "@nestjs/schedule";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { PostgresConfig } from "./config/postgres.config";
@@ -14,6 +15,7 @@ import { UserModule } from "./modules/user/user.module";
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       useClass: PostgresConfig,
       inject: [PostgresConfig],

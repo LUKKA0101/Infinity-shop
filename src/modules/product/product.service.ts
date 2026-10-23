@@ -16,6 +16,8 @@ export class ProductService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
+  //----------------
+
   async createProduct(createProductDto: CreateProductDto) {
     const { categoryId, ...productData } = createProductDto;
     const category = categoryId
@@ -40,6 +42,8 @@ export class ProductService {
     });
   }
 
+  //---------------
+
   async getProductById(id: string) {
     const product = await this.productRepository.findOne({
       where: { id },
@@ -50,6 +54,8 @@ export class ProductService {
     }
     return product;
   }
+
+  //----------------
 
   async updateProduct(id: string, updateProductDto: UpdateProductDto) {
     const product = await this.productRepository.findOneBy({ id });
@@ -75,6 +81,8 @@ export class ProductService {
 
     return await this.productRepository.save(product);
   }
+
+  //----------------
 
   async deleteProduct(id: string) {
     const product = await this.productRepository.findOneBy({ id });

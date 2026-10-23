@@ -13,7 +13,7 @@ import { PasswordService } from "./password.service";
     TypeOrmModule.forFeature([User, Cart]),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: "5h" },
+      signOptions: { expiresIn: "2h" },
     }),
   ],
   providers: [AuthService, PasswordService],
